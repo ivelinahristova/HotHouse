@@ -22,7 +22,6 @@
             .container {
                 text-align: center;
                 display: table-cell;
-                vertical-align: middle;
             }
 
             .content {
@@ -31,14 +30,28 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 56px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 555</div>
+                <div class="title">Sensors</div>
+                <table>
+                    <?php foreach($sensors as $sensor): ?>
+                        <?php
+                        /**
+                         * @var $sensor
+                         */
+                        ?>
+                        <tr>
+                            <td><?php echo $sensor->name; ?> - </td>
+                            <td><?php echo $sensor->value; ?></td>,
+                            <td><?php echo $sensor->updated_at; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
             </div>
         </div>
     </body>

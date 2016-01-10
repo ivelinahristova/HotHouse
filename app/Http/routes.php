@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Routing\Router;
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -15,6 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hi', function () {
+
+    return 'hi';
+});
+
+Route::resource('sensors', 'SensorsController');
+
+Route::group(['middleware' => 'cors'], function(Router $router){
+    $router->get('sensors/{sensorName}', 'SensorsController@update');
+});
+
+Route::group(['middleware' => 'cors'], function(Router $router){
+    $router->get('sensors', 'SensorsController@index');
+});
+
+Route::resource('controls', 'ControlsController');
+
+Route::group(['middleware' => 'cors'], function(Router $router){
+    $router->get('controls/{controlName}', 'ControlsController@update');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
